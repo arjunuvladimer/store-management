@@ -1,17 +1,26 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { StoreModule } from '@ngrx/store';
-import { AppComponent } from './app.component';
-import { CourseReducer } from './store/reducers/course.reducer';
+
+
+// Redux
+// Store Module:
+// => It is helping us to create an object based state/store
+// => Getting all the inbuilt functions from the Store Module
+import {StoreModule} from '@ngrx/store';
+import {BookReducer} from './store/reducers/book-reducer'
 import { FormsModule } from '@angular/forms';
+
+import { AppComponent } from './app.component';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
     FormsModule,
+    // Create Store in the form of object
     StoreModule.forRoot({
-      course: CourseReducer,
-    }),
+      book: BookReducer
+    })
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,39 +1,62 @@
 <section>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <h4>Angular State Management</h4>
-      </div>
-
-      <div class="col-md-6">
-        <ul class="list-group">
-          <li class="list-group-item" *ngFor="let course of courseItems$ | async">
-            {{course.name}}: <b>{{course.department}}</b>
-          </li>
-
-        </ul>
-      </div>
-
-      <div class="col-md-6">
-        <div class="card p-4 shadow-sm">
-          <form #myform="ngForm" (ngSubmit)="addCourse(myform)">
-            <div class="form-group">
-              <label for="name">Identity</label>
-              <input type="text" class="form-control" ngModel name="id" id="id" aria-describedby="name" required>
+    <div class="conainer">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 style="text-align:center">Store Management</h1>
             </div>
-            <div class="form-group">
-              <label for="name">Name</label>
-              <input type="text" class="form-control" ngModel name="name" id="name" aria-describedby="name" required>
-            </div>
-            <div class="form-group">
-              <label for="department">Department</label>
-              <input type="text" class="form-control" ngModel name="department" id="department" required>
+            <br />
+            <div class="col-md-6">
+                <h2 style="text-align:center">List of Books</h2>
+                <ul class="list-group">
+                    <li 
+                        class="list-group-item"
+                        *ngFor="let book of bookList$ | async" >
+                        {{book.book_name}}: 
+                        <p>{{book.book_description}}</p>
+                    </li>
+                </ul>
             </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
+            <div class="col-md-6">
+                <h2 style="text-align:center">Add Book</h2>
+                <form #bookform = "ngForm" (ngSubmit)="addBook(bookform)">
+                    <div class="form-group">
+                        <label>Book ID</label>
+                        <input 
+                            type="text" 
+                            class="form-control" 
+                            ngModel 
+                            name="book_id" 
+                            id="book_id"
+                            aria-describedby="book_id"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label>Book Name</label>
+                        <input 
+                            type="text" 
+                            class="form-control"
+                            ngModel 
+                            name="book_name" 
+                            id="book_name"
+                            aria-describedby="book_name"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label>Book Description</label>
+                        <input 
+                            type="text" 
+                            class="form-control" 
+                            ngModel 
+                            name="book_description" 
+                            id="book_description"
+                            aria-describedby="book_description"
+                            required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+            </div>
         </div>
-      </div>
+        
     </div>
-  </div>
 </section>

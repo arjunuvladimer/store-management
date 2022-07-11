@@ -1,24 +1,45 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { CourseItem } from './store/models/courseItem.model';
-import { AppState } from './store/models/app-state.model';
+
+// Redux
+import {Store} from '@ngrx/store'
+import {AddBookAction} from './store/actions/book.action'
+import { BookModel } from './store/models/book-store.model';
+import {BookState} from './store/models/book-state.model'
+
+// Forms
 import { NgForm } from '@angular/forms';
-import { AddItemAction } from './store/actions/course.action';
+
+// Rxjs
+import { Observable } from 'rxjs';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
+
+
 export class AppComponent implements OnInit {
-  courseItems$: Observable<Array<CourseItem>>;
-  constructor(private store: Store<AppState>) {}
+
+  // Identity with Array of Objects Type
+  bookList$: Observable<Array<BookModel>>;
+
+  constructor(private store: Store<BookState>) {}
+
   ngOnInit(): void {
-    this.courseItems$ = this.store.select((store) => store.course);
+    // Returning Initial State, Update State from Store to the component
+
+    // Subscribing Data
+    this.bookList$ = this.store.select((store) => store.book)
   }
 
-  addCourse(form: NgForm) {
-    this.store.dispatch(new AddItemAction(form.value));
-    form.reset();
+  // Book Actions
+  addBook(form: NgForm){
+
+    // From the component wheneve a form Trigger onSubmit 
+    // Dispatch Action Creator AddBookAction(payload)
+    this.store.dispatch(new AddBookAction(form.value))
+    form.reset()
   }
+ 
 }
